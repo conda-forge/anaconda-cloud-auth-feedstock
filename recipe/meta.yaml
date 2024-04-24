@@ -12,7 +12,7 @@ source:
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
-  number: 1
+  number: 2
 
 requirements:
   host:
@@ -31,6 +31,8 @@ requirements:
     - requests
     - cryptography >=3.4.0
     - semver
+  run_constrained:
+    - conda >=23.9.0
 
 test:
   imports:
