@@ -1,4 +1,4 @@
-{% set version = "0.12.3" %}
+{% set version = "0.13.0" %}
 
 package:
   name: anaconda-cloud-auth-split
@@ -6,19 +6,11 @@ package:
 
 source:
   url: https://github.com/anaconda/anaconda-auth/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 173007c0a5686b335e9d62f10d8a19e27b185a0d4c1dda76fbc92bf355fb69f2
+  sha256: daf7c6122cf9cb37ac8e04f5a399026cd9f027067e99bd6bcb8c4ea86956b4d8
 
 build:
   number: 0
-  skip: true  # [py<39]
-
-requirements:
-  build:
-    - python
-    - hatchling
-    - hatch-vcs >=0.3
-    - pip
-    - setuptools-scm >=7.1
+  skip: true  # [py<310]
 
 outputs:
   - name: anaconda-auth
@@ -38,7 +30,7 @@ outputs:
         - setuptools-scm >=7.1
       run:
         - python
-        - anaconda-cli-base >=0.7.0
+        - anaconda-cli-base >=0.8.1
         - cryptography >=3.4.0
         - keyring
         - pkce
@@ -47,6 +39,7 @@ outputs:
         - python-dotenv
         - requests
         - semver <4
+        - httpx
       run_constrained:
         # Added through past PRs, given upstream maintainer advice
         - conda >=23.9.0
@@ -78,8 +71,6 @@ outputs:
       imports:
         - anaconda_auth
         - anaconda_cloud_auth
-      source_files:
-        - tests
       requires:
         - pip
         - pytest
@@ -98,7 +89,7 @@ outputs:
         - conda token -h
 
 about:
-  home: https://anaconda.com
+  home: https://www.anaconda.com
   doc_url: https://anaconda.github.io/anaconda-auth/
   dev_url: https://github.com/anaconda/anaconda-auth
   license: BSD-3-Clause
@@ -114,3 +105,6 @@ extra:
   recipe-maintainers:
     - albertdefusco
     - mattkram
+  skip-lints:
+    - wrong_output_script_key
+    - host_section_needs_exact_pinnings
