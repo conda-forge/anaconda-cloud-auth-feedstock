@@ -71,8 +71,6 @@ outputs:
       imports:
         - anaconda_auth
         - anaconda_cloud_auth
-      source_files:
-        - tests
       requires:
         - pip
         - pytest
@@ -91,7 +89,7 @@ outputs:
         - conda token -h
 
 about:
-  home: https://anaconda.com
+  home: https://www.anaconda.com
   doc_url: https://anaconda.github.io/anaconda-auth/
   dev_url: https://github.com/anaconda/anaconda-auth
   license: BSD-3-Clause
@@ -107,3 +105,6 @@ extra:
   recipe-maintainers:
     - albertdefusco
     - mattkram
+  skip-lints:
+    - wrong_output_script_key
+    - host_section_needs_exact_pinnings
